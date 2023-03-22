@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { BiArrowBack } from "react-icons/bi";
 
 interface IHeaderProps {
@@ -8,7 +9,10 @@ interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = ({ label, showBackArrow }) => {
   const router = useRouter();
-  const handleBack = () => {};
+
+  const handleBack = useCallback(() => {
+    router.back();
+  }, [router]);
 
   return (
     <div className="border-b-[1px] border-neutral-800 p-5">
