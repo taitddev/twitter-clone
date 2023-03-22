@@ -12,3 +12,9 @@ body {
   font-family: "Inter", sans-serif;
   @apply h-full bg-black text-white;
 }
+
+@layer base {
+  textarea {
+    @apply bg-inherit outline-none;
+  }
+}
