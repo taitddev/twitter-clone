@@ -1,5 +1,6 @@
 import { IconType } from "react-icons";
 import { BiBell, BiHomeAlt, BiLogOut, BiUser } from "react-icons/bi";
+import { FiFeather } from "react-icons/fi";
 import SidebarItem from "./SidebarItem";
 import SidebarLogo from "./SidebarLogo";
 
@@ -55,6 +56,13 @@ const Sidebar = () => {
           {items.map((item) => (
             <SidebarItem key={item.id} item={item}></SidebarItem>
           ))}
+
+          <div className="p-4">
+            <button className="flex items-center justify-center gap-2 rounded-full bg-sky-500 p-4">
+              <FiFeather size={20} />
+              <span className="hidden font-semibold lg:block">New post</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
