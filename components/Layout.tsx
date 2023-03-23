@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import FollowBar from "./FollowBar";
 import Sidebar from "./layout/Sidebar";
 import MetaData from "./MetaData";
 
@@ -15,6 +16,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <div className="col-span-3 border-x-[1px] border-neutral-800 lg:col-span-2">
           {children}
         </div>
+        <FollowBar />
       </main>
     </div>
   );

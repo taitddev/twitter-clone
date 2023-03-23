@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface IAvatarProps {
-  userId: string;
+  userId: string | number;
 }
 
 const Avatar: React.FC<IAvatarProps> = ({ userId }) => {
