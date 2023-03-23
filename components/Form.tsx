@@ -1,5 +1,6 @@
 import React from "react";
 import Avatar from "./Avatar";
+import Button from "./Button";
 
 interface IFormProps {
   placeholder: string;
@@ -23,7 +24,7 @@ const Form: React.FC<IFormProps> = ({ placeholder }) => {
           />
           <hr className="h-[1px] w-full border-neutral-800 opacity-0 transition peer-focus:opacity-100" />
           <div className="mt-4 flex flex-row justify-end">
-            <button>Post</button>
+            <Button label="Post" />
           </div>
         </div>
       </div>
