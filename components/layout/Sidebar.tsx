@@ -1,3 +1,4 @@
+import useCurrentUser from "@/hooks/useCurrentUser";
 import { IconType } from "react-icons";
 import { BiBell, BiHomeAlt, BiLogOut, BiUser } from "react-icons/bi";
 import { FiFeather } from "react-icons/fi";
@@ -16,6 +17,8 @@ export interface ISidebarItem {
 }
 
 const Sidebar = () => {
+  const { currentUser } = useCurrentUser();
+
   const handleLogout = () => {};
 
   const items: ISidebarItem[] = [
@@ -44,7 +47,7 @@ const Sidebar = () => {
       id: 4,
       icon: BiLogOut,
       label: "Logout",
-      href: `/users/123`,
+      href: `/users/${currentUser?.id}`,
       onClick: handleLogout,
     },
   ];

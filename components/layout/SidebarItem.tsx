@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { BsDot } from "react-icons/bs";
 import { ISidebarItem } from "./Sidebar";
 
@@ -6,9 +7,13 @@ interface ISidebarItemProps {
 }
 
 const SidebarItem: React.FC<ISidebarItemProps> = ({ item }) => {
-  const { label, icon: Icon, alert } = item;
+  const { label, icon: Icon, alert, onClick } = item;
 
-  const handleClick = () => {};
+  const handleClick = useCallback(() => {
+    if (onClick) {
+      return onClick();
+    }
+  }, []);
 
   return (
     <div
