@@ -14,6 +14,7 @@ const Avatar: React.FC<IAvatarProps> = ({ userId }) => {
           objectFit: "cover",
           borderRadius: "100%",
         }}
+        sizes="20"
         alt="Avatar"
         onClick={onClick}
         src="/images/placeholder.png"

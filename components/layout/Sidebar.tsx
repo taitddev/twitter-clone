@@ -1,6 +1,7 @@
 import { IconType } from "react-icons";
 import { BiBell, BiHomeAlt, BiLogOut, BiUser } from "react-icons/bi";
 import { FiFeather } from "react-icons/fi";
+import AddPost from "../button/AddPost";
 import SidebarItem from "./SidebarItem";
 import SidebarLogo from "./SidebarLogo";
 
@@ -58,10 +59,7 @@ const Sidebar = () => {
           ))}
 
           <div className="p-4">
-            <button className="flex items-center justify-center gap-2 rounded-full bg-sky-500 p-4">
-              <FiFeather size={20} />
-              <span className="hidden font-semibold lg:block">New post</span>
-            </button>
+            <AddPost />
           </div>
         </div>
       </div>
