@@ -40,14 +40,13 @@ const Sidebar = () => {
       id: 3,
       icon: BiUser,
       label: "Profile",
-      href: `/users/123`,
+      href: `/users/${currentUser?.id}`,
       auth: true,
     },
     {
       id: 4,
       icon: BiLogOut,
       label: "Logout",
-      href: `/users/${currentUser?.id}`,
       onClick: handleLogout,
     },
   ];

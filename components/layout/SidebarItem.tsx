@@ -1,5 +1,5 @@
+import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { BsDot } from "react-icons/bs";
 import { ISidebarItem } from "./Sidebar";
 
 interface ISidebarItemProps {
@@ -7,13 +7,16 @@ interface ISidebarItemProps {
 }
 
 const SidebarItem: React.FC<ISidebarItemProps> = ({ item }) => {
-  const { label, icon: Icon, alert, onClick } = item;
+  const router = useRouter();
+  const { label, icon: Icon, alert, onClick, href } = item;
 
   const handleClick = useCallback(() => {
     if (onClick) {
       return onClick();
     }
-  }, []);
+
+    if (href) router.push(href);
+  }, [onClick, href, router]);
 
   return (
     <div

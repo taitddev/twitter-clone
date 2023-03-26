@@ -10,11 +10,15 @@ interface ILayoutProps {
 }
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
-  const { currentUser } = useCurrentUser();
+  const { currentUser, isLoading } = useCurrentUser();
+
+  if (isLoading) return null;
 
   return (
     <div className="h-screen">
-      {currentUser ? (
+      {!currentUser ? (
+        <Container />
+      ) : (
         <>
           <MetaData title="Home" />
           <main className="grid h-full grid-cols-4">
@@ -25,8 +29,6 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
             <FollowBar />
           </main>
         </>
-      ) : (
-        <Container />
       )}
     </div>
   );
