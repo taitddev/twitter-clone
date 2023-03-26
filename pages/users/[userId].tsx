@@ -1,4 +1,6 @@
 import Header from "@/components/Header";
+import Background from "@/components/users/Background";
+import Bio from "@/components/users/Bio";
 import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
@@ -19,6 +21,8 @@ const Profile = () => {
   return (
     <>
       <Header label={user?.name} />
+      <Background userId={userId as string} />
+      <Bio userId={userId as string} />
     </>
   );
 };
