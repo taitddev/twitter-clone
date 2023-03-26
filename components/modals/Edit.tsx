@@ -13,11 +13,14 @@ import Input from "../input/InputBase";
 
 import { AiOutlineUser, AiOutlineIdcard } from "react-icons/ai";
 import { SiAboutdotme } from "react-icons/si";
+import CoverUpload from "../input/CoverUpload";
+import AvatarUpload from "../input/AvatarUpload";
 
 interface FormValues {
   name: string;
   username: string;
-  bio: string;
+  bio?: string;
+  coverPicture?: string;
 }
 
 const editUserSchema = yup.object().shape({
@@ -28,6 +31,7 @@ const editUserSchema = yup.object().shape({
 
 const Edit = () => {
   const { currentUser } = useCurrentUser();
+  console.log("🚀 ~ file: Edit.tsx:34 ~ Edit ~ currentUser:", currentUser);
   const { mutate } = useUser(currentUser?.id);
   const { isOpen, onOpen, onClose } = useEditModal();
 
@@ -68,33 +72,45 @@ const Edit = () => {
           validationSchema={editUserSchema}
           onSubmit={handleFormSubmit}
         >
-          {({ values, handleChange, handleSubmit }) => (
+          {({ values, handleChange, handleSubmit, setFieldValue }) => (
             <form onSubmit={handleSubmit}>
-              <Input
-                name="name"
-                placeholder="Name"
-                startIcon={AiOutlineIdcard}
+              <CoverUpload
+                value={currentUser?.coverImage}
                 onChange={handleChange}
               />
-              <Input
-                name="username"
-                placeholder="Username"
-                startIcon={AiOutlineUser}
+
+              <AvatarUpload
+                value={currentUser?.profileImage}
                 onChange={handleChange}
               />
-              <Input
-                name="bio"
-                placeholder="Bio"
-                startIcon={SiAboutdotme}
-                onChange={handleChange}
-              />
-              <div className="mt-10">
-                <button
-                  type="submit"
-                  className="w-full transform rounded-lg bg-blue-500 px-6 py-4 text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                >
-                  Save
-                </button>
+
+              <div className="mt-20 p-8">
+                <Input
+                  name="name"
+                  placeholder="Name"
+                  startIcon={AiOutlineIdcard}
+                  onChange={handleChange}
+                />
+                <Input
+                  name="username"
+                  placeholder="Username"
+                  startIcon={AiOutlineUser}
+                  onChange={handleChange}
+                />
+                <Input
+                  name="bio"
+                  placeholder="Bio"
+                  startIcon={SiAboutdotme}
+                  onChange={handleChange}
+                />
+                <div className="mt-10">
+                  <button
+                    type="submit"
+                    className="w-full transform rounded-lg bg-blue-500 px-6 py-4 text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </form>
           )}

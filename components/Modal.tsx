@@ -42,51 +42,21 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800 bg-opacity-70 outline-none focus:outline-none">
-        <div className="relative my-6 mx-auto h-full w-full lg:h-auto lg:w-3/6 lg:max-w-3xl">
+        <div className="relative my-6 mx-auto h-full w-full lg:h-auto lg:w-3/6 lg:max-w-2xl">
           {/*content*/}
-          <div
-            className="
-            relative
-            flex
-            h-full 
-            w-full 
-            flex-col 
-            rounded-lg 
-            border-0 
-            bg-black 
-            shadow-lg 
-            outline-none 
-            focus:outline-none 
-            lg:h-auto
-            "
-          >
-            {/*header*/}
-            <div
-              className="
-              flex 
-              items-center 
-              justify-between 
-              rounded-t 
-              p-10
-              "
-            >
-              <h3 className="text-3xl font-semibold text-white">{title}</h3>
+          <div className="relative flex h-full w-full flex-col rounded-lg border-0 bg-lightPrimary shadow-lg outline-none focus:outline-none dark:bg-darkSecondary dark:text-lightPrimary lg:h-auto">
+            {/* Header */}
+            <div className="flex items-center justify-between rounded-t p-8">
+              <h3 className="text-xl font-semibold">{title}</h3>
               <button
-                className="
-                  ml-auto 
-                  border-0
-                  p-1 
-                  text-white 
-                  transition
-                  hover:opacity-70
-                "
+                className="ml-auto border-0 p-1 transition hover:opacity-70"
                 onClick={handleClose}
               >
                 <AiOutlineClose size={20} />
               </button>
             </div>
             {/*body*/}
-            <div className="relative flex-auto p-10">{children}</div>
+            <div className="relative flex-auto">{children}</div>
           </div>
         </div>
       </div>
