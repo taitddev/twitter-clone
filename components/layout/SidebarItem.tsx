@@ -24,13 +24,13 @@ const SidebarItem: React.FC<ISidebarItemProps> = ({ item }) => {
       className="flex cursor-pointer items-center gap-2 rounded-full p-4 hover:bg-slate-300 hover:bg-opacity-10"
     >
       <div className="relative">
-        <Icon size={24} color="white" />
+        <Icon size={24} />
         {alert ? (
           <div className="absolute right-0 top-0 h-3 w-3 -translate-y-2/4 rounded-full bg-sky-500"></div>
         ) : null}
       </div>
 
-      <p className="hidden text-xl text-white lg:block">{label}</p>
+      <p className="hidden text-xl lg:block">{label}</p>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
   if (isLoading) return null;
 
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-lightSecondary text-darkPrimary dark:bg-darkPrimary dark:text-lightPrimary">
       {!currentUser ? (
         <Container />
       ) : (
@@ -23,7 +23,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
           <MetaData title="Home" />
           <main className="grid h-full grid-cols-4">
             <Sidebar />
-            <div className="col-span-3 border-x-[1px] border-neutral-800 lg:col-span-2">
+            <div className="border-light col-span-3 border-x-[1px] lg:col-span-2">
               {children}
             </div>
             <FollowBar />

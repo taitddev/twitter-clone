@@ -1,22 +1,21 @@
+import useUsers from "@/hooks/useUsers";
 import Avatar from "./Avatar";
 
 const FollowBar = () => {
-  const users = [
-    { id: 1, name: "John", username: "johndoe" },
-    { id: 2, name: "Trinh Dinh Tai", username: "taitd" },
-    { id: 3, name: "Trinh Quynh Trang", username: "trangtq" },
-  ];
+  const { users = [] } = useUsers();
+  console.log("🚀 ~ file: FollowBar.tsx:6 ~ FollowBar ~ users:", users);
+
   return (
     <div className="hidden px-6 py-4 lg:block">
-      <div className="rounded-xl bg-neutral-800 p-4">
-        <h2 className="text-xl font-semibold text-white">Who to follow</h2>
+      <div className="rounded-xl bg-lightPrimary p-4 dark:bg-darkSecondary">
+        <h2 className="text-xl font-semibold">Who to follow</h2>
         <div className="mt-4 flex flex-col gap-6">
-          {users.map((user) => (
+          {users.map((user: any) => (
             <div key={user.id} className="flex flex-row gap-4">
               <Avatar userId={user.id.toString()} />
               <div className="flex flex-col">
-                <p className="text-sm font-semibold text-white">{user.name}</p>
-                <p className="text-sm text-neutral-400">@{user.username}</p>
+                <p className="text-sm font-semibold ">{user?.name}</p>
+                <p className="text-sm text-neutral-400">@{user?.username}</p>
               </div>
             </div>
           ))}

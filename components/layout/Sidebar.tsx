@@ -1,7 +1,9 @@
+import { useDarkMode } from "@/context/darkModeContext";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { IconType } from "react-icons";
 import { BiBell, BiHomeAlt, BiLogOut, BiUser } from "react-icons/bi";
-import { FiFeather } from "react-icons/fi";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
+
 import AddPost from "../button/AddPost";
 import SidebarItem from "./SidebarItem";
 import SidebarLogo from "./SidebarLogo";
@@ -18,6 +20,8 @@ export interface ISidebarItem {
 
 const Sidebar = () => {
   const { currentUser } = useCurrentUser();
+  const { isDarkMode, changeDarkMode } = useDarkMode();
+  console.log("🚀 ~ file: Sidebar.tsx:24 ~ Sidebar ~ isDarkMode:", isDarkMode);
 
   const handleLogout = () => {};
 
@@ -62,6 +66,14 @@ const Sidebar = () => {
 
           <div className="p-4">
             <AddPost />
+          </div>
+
+          <div className="p-4">
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={changeDarkMode}
+              size={26}
+            />
           </div>
         </div>
       </div>

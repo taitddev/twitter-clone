@@ -10,7 +10,7 @@ interface IFormProps {
 
 const Form: React.FC<IFormProps> = ({ placeholder }) => {
   return (
-    <div className="border-b-[1px] border-neutral-800 px-5 py-2">
+    <div className="border-b-[1px] border-lightSecondary px-5 py-2">
       <div className="flex gap-4">
         <div>
           <Avatar userId={"12345"} />

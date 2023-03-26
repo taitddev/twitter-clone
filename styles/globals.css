@@ -5,12 +5,12 @@
 @tailwind utilities;
 
 :root {
-  @apply h-full bg-black text-white;
+  @apply h-full bg-lightSecondary text-darkPrimary dark:bg-darkPrimary dark:text-lightPrimary;
 }
 
 body {
   font-family: "Inter", sans-serif;
-  @apply h-full bg-black text-white;
+  @apply h-full bg-lightSecondary text-darkPrimary dark:bg-darkPrimary dark:text-lightPrimary;
 }
 
 @layer base {
