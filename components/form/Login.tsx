@@ -64,7 +64,7 @@ const Login = () => {
             name="email"
             type="email"
             placeholder="Email address"
-            icon={AiOutlineMail}
+            startIcon={AiOutlineMail}
             onChange={handleChange}
           />
 
@@ -72,7 +72,7 @@ const Login = () => {
             name="password"
             type="password"
             placeholder="Password"
-            icon={AiOutlineLock}
+            startIcon={AiOutlineLock}
             onChange={handleChange}
           />
 

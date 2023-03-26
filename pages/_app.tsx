@@ -4,11 +4,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.css";
 import Layout from "@/components/Layout";
+import Edit from "@/components/modals/Edit";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
       <ToastContainer position="bottom-right" />
+      <Edit />
       <Layout>
         <Component {...pageProps} />
       </Layout>

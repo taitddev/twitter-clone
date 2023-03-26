@@ -3,24 +3,27 @@ import { IconType } from "react-icons";
 
 interface InputProps {
   name: string;
-  type: HTMLInputTypeAttribute;
+  type?: HTMLInputTypeAttribute;
   placeholder?: string;
-  icon: IconType;
+  startIcon?: IconType;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: React.FC<InputProps> = ({
   name,
-  type,
+  type = "text",
   placeholder,
-  icon: Icon,
+  startIcon: Icon,
   onChange,
 }) => {
   return (
     <div className="relative mt-8 flex items-center">
-      <span className="absolute left-2">
-        <Icon size={24} />
-      </span>
+      {Icon && (
+        <span className="absolute left-2">
+          <Icon size={24} />
+        </span>
+      )}
+
       <input
         name={name}
         type={type}

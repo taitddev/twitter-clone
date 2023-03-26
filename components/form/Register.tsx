@@ -71,14 +71,14 @@ const Register = () => {
             name="name"
             type="text"
             placeholder="Enter your name"
-            icon={AiOutlineIdcard}
+            startIcon={AiOutlineIdcard}
             onChange={handleChange}
           />
           <Input
             name="username"
             type="text"
             placeholder="Enter your username"
-            icon={AiOutlineUser}
+            startIcon={AiOutlineUser}
             onChange={handleChange}
           />
 
@@ -86,7 +86,7 @@ const Register = () => {
             name="email"
             type="email"
             placeholder="Email address"
-            icon={AiOutlineMail}
+            startIcon={AiOutlineMail}
             onChange={handleChange}
           />
 
@@ -94,7 +94,7 @@ const Register = () => {
             name="password"
             type="password"
             placeholder="Password"
-            icon={AiOutlineLock}
+            startIcon={AiOutlineLock}
             onChange={handleChange}
           />
 
