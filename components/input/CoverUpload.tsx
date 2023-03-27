@@ -5,20 +5,17 @@ import { useDropzone } from "react-dropzone";
 import { BiImageAdd, BiX } from "react-icons/bi";
 
 interface IImageUploadProps {
-  onChange: (base64: string) => void;
   value?: string;
   disabled?: boolean;
+  setFieldValue: (
+    field: string,
+    value: any,
+    shouldValidate?: boolean | undefined
+  ) => void;
 }
 
-const CoverUpload = ({ onChange, value, disabled }: IImageUploadProps) => {
+const CoverUpload = ({ value, disabled, setFieldValue }: IImageUploadProps) => {
   const [base64, setBase64] = useState(value);
-
-  const handleChange = useCallback(
-    (base64: string) => {
-      onChange(base64);
-    },
-    [onChange]
-  );
 
   const handleDrop = useCallback(
     (files: any) => {
@@ -26,11 +23,11 @@ const CoverUpload = ({ onChange, value, disabled }: IImageUploadProps) => {
       const reader = new FileReader();
       reader.onload = (event: any) => {
         setBase64(event.target.result);
-        handleChange(event.target.result);
+        setFieldValue("coverImage", event.target.result);
       };
       reader.readAsDataURL(file);
     },
-    [handleChange]
+    [setFieldValue]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -43,38 +40,30 @@ const CoverUpload = ({ onChange, value, disabled }: IImageUploadProps) => {
     },
   });
 
-  const clearCoverImage = () => {
-    setBase64(undefined);
-  };
-
   return (
     <div className="relative">
       <div className="relative flex min-h-[300px] w-full items-center justify-center gap-2 overflow-hidden">
+        {/* Overlay */}
+        <div className="absolute inset-0 top-[80%] bg-gradient-to-b from-transparent to-black"></div>
         <button
           type="button"
           {...getRootProps({
-            className: "z-10 rounded-full bg-gray-800 bg-opacity-50 p-4",
+            className:
+              "absolute bottom-5 right-5 bg-white z-[100] rounded-xl bg-lightSecondary text-darkPrimary bg-opacity-90 p-3 flex gap-2 items-center text-sm",
           })}
         >
-          <BiImageAdd size={20} />
+          <BiImageAdd size={18} />
+          <span>Thêm ảnh bìa</span>
         </button>
         <input {...getInputProps()} />
         {base64 ? (
           <>
-            <button
-              type="button"
-              {...getRootProps({
-                className: "z-10 rounded-full bg-gray-800 bg-opacity-50 p-4",
-              })}
-              onClick={clearCoverImage}
-            >
-              <BiX size={20} />
-            </button>
             <Image
               src={base64}
               alt="Uploaded image"
+              sizes="40"
               fill
-              className="object-cover opacity-80"
+              className="object-cover"
             />
           </>
         ) : null}

@@ -7,12 +7,11 @@ interface IAvatarProps {
 }
 
 const Avatar: React.FC<IAvatarProps> = ({ userId }) => {
-  const router = useRouter();
   const { user } = useUser(userId);
 
   const onClick = () => {};
   return (
-    <div className="relative h-12 w-12 cursor-pointer rounded-full transition hover:opacity-90">
+    <div className="relative h-12 w-12 cursor-pointer rounded-full ring-4 ring-gray-200 transition hover:opacity-90">
       <Image
         fill
         style={{

@@ -19,8 +19,9 @@ import AvatarUpload from "../input/AvatarUpload";
 interface FormValues {
   name: string;
   username: string;
-  bio?: string;
-  coverPicture?: string;
+  bio: string;
+  coverImage?: string;
+  profileImage?: string;
 }
 
 const editUserSchema = yup.object().shape({
@@ -31,20 +32,44 @@ const editUserSchema = yup.object().shape({
 
 const Edit = () => {
   const { currentUser } = useCurrentUser();
-  console.log("🚀 ~ file: Edit.tsx:34 ~ Edit ~ currentUser:", currentUser);
   const { mutate } = useUser(currentUser?.id);
-  const { isOpen, onOpen, onClose } = useEditModal();
+  const { isOpen, onClose } = useEditModal();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = () => {};
 
-  const handleFormSubmit = async ({ name, username, bio }: FormValues) => {
+  const handleFormSubmit = async ({
+    name,
+    username,
+    bio,
+    coverImage,
+    profileImage,
+  }: FormValues) => {
     try {
       setIsLoading(true);
-      await axios.patch("/api/edit", { name, username, bio });
-      setIsLoading(false);
+
+      const profileResponse = await axios.post("/api/upload", {
+        imageBase64: profileImage,
+      });
+
+      const coverResponse = await axios.post("/api/upload", {
+        imageBase64: coverImage,
+      });
+
+      const profileUrl = profileResponse.data?.imageUrl;
+      const coverUrl = coverResponse.data?.imageUrl;
+
+      await axios.patch("/api/edit", {
+        name,
+        username,
+        bio,
+        profileImage: profileUrl,
+        coverImage: coverUrl,
+      });
+      mutate();
       toast.success("Updated successfully!");
+      onClose();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -56,6 +81,8 @@ const Edit = () => {
     name: currentUser?.name,
     username: currentUser?.username,
     bio: currentUser?.bio,
+    profileImage: currentUser?.profileImage,
+    coverImage: currentUser?.coverImage,
   };
 
   return (
@@ -75,33 +102,36 @@ const Edit = () => {
           {({ values, handleChange, handleSubmit, setFieldValue }) => (
             <form onSubmit={handleSubmit}>
               <CoverUpload
-                value={currentUser?.coverImage}
-                onChange={handleChange}
+                value={values?.coverImage}
+                setFieldValue={setFieldValue}
               />
 
               <AvatarUpload
-                value={currentUser?.profileImage}
-                onChange={handleChange}
+                value={values?.profileImage}
+                setFieldValue={setFieldValue}
               />
 
-              <div className="mt-20 p-8">
+              <div className="mt-16 p-8">
                 <Input
                   name="name"
                   placeholder="Name"
                   startIcon={AiOutlineIdcard}
                   onChange={handleChange}
+                  value={values?.name}
                 />
                 <Input
                   name="username"
                   placeholder="Username"
                   startIcon={AiOutlineUser}
                   onChange={handleChange}
+                  value={values?.username}
                 />
                 <Input
                   name="bio"
                   placeholder="Bio"
                   startIcon={SiAboutdotme}
                   onChange={handleChange}
+                  value={values?.bio}
                 />
                 <div className="mt-10">
                   <button

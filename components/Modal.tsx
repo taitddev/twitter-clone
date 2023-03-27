@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800 bg-opacity-70 outline-none focus:outline-none">
         <div className="relative my-6 mx-auto h-full w-full lg:h-auto lg:w-3/6 lg:max-w-2xl">
           {/*content*/}
-          <div className="relative flex h-full w-full flex-col rounded-lg border-0 bg-lightPrimary shadow-lg outline-none focus:outline-none dark:bg-darkSecondary dark:text-lightPrimary lg:h-auto">
+          <div className="relative flex h-full w-full flex-col rounded-lg border-0 bg-lightSecondary shadow-lg outline-none focus:outline-none dark:bg-darkSecondary dark:text-lightPrimary lg:h-auto">
             {/* Header */}
             <div className="flex items-center justify-between rounded-t p-8">
               <h3 className="text-xl font-semibold">{title}</h3>

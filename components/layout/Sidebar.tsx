@@ -21,7 +21,6 @@ export interface ISidebarItem {
 const Sidebar = () => {
   const { currentUser } = useCurrentUser();
   const { isDarkMode, changeDarkMode } = useDarkMode();
-  console.log("🚀 ~ file: Sidebar.tsx:24 ~ Sidebar ~ isDarkMode:", isDarkMode);
 
   const handleLogout = () => {};
 

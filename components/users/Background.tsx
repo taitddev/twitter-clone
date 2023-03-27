@@ -1,6 +1,5 @@
 import useUser from "@/hooks/useUser";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import Avatar from "../Avatar";
 
 interface IBackgroundProps {
@@ -11,13 +10,14 @@ const Background = ({ userId }: IBackgroundProps) => {
   const { user } = useUser(userId);
 
   return (
-    <div className="relative h-44 bg-neutral-700">
+    <div className="relative h-[36%] w-full bg-neutral-700 pb-[1/3]">
       {user?.coverImage && (
         <Image
           src={user?.coverImage}
           fill
+          sizes="100"
           alt="Cover Image"
-          style={{ objectFit: "cover" }}
+          className="object-cover"
         />
       )}
       <div className="absolute -bottom-16 left-4">

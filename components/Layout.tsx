@@ -21,12 +21,14 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
       ) : (
         <>
           <MetaData title="Home" />
-          <main className="grid h-full grid-cols-4">
-            <Sidebar />
-            <div className="border-light col-span-3 border-x-[1px] lg:col-span-2">
-              {children}
+          <main className="xl:px-30 max-w-7xlxl container mx-auto h-full">
+            <div className="grid h-full grid-cols-4">
+              <Sidebar />
+              <div className="border-light col-span-3 border-x-[1px] lg:col-span-2">
+                {children}
+              </div>
+              <FollowBar />
             </div>
-            <FollowBar />
           </main>
         </>
       )}
