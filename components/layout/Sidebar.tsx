@@ -1,5 +1,6 @@
 import { useDarkMode } from "@/context/darkModeContext";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { signOut } from "next-auth/react";
 import { IconType } from "react-icons";
 import { BiBell, BiHomeAlt, BiLogOut, BiUser } from "react-icons/bi";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
@@ -22,7 +23,9 @@ const Sidebar = () => {
   const { currentUser } = useCurrentUser();
   const { isDarkMode, changeDarkMode } = useDarkMode();
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    signOut();
+  };
 
   const items: ISidebarItem[] = [
     {

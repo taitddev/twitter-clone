@@ -66,6 +66,7 @@ const Login = () => {
             placeholder="Email address"
             startIcon={AiOutlineMail}
             onChange={handleChange}
+            value={values.email}
           />
 
           <Input
@@ -74,6 +75,7 @@ const Login = () => {
             placeholder="Password"
             startIcon={AiOutlineLock}
             onChange={handleChange}
+            value={values.password}
           />
 
           <div className="mt-10">
