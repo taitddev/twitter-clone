@@ -59,7 +59,7 @@ const Sidebar = () => {
 
   return (
     <div className="relative h-full pr-4 md:pr-6">
-      <div className="fixed flex flex-col items-end">
+      <div className="sticky top-0 flex flex-col items-end">
         <div className="py-2 lg:w-[230px]">
           <SidebarLogo />
           {items.map((item) => (
