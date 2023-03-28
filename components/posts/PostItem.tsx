@@ -1,4 +1,8 @@
 import { useRouter } from "next/router";
+import moment from "moment";
+import "moment/locale/vi";
+moment.locale("vi");
+
 import { BiComment, BiLike } from "react-icons/bi";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
@@ -10,6 +14,7 @@ interface IPostItemProps {
 }
 
 const PostItem = ({ userId, post }: IPostItemProps) => {
+  console.log("file: PostItem.tsx:13 ~ PostItem ~ post:", post);
   const router = useRouter();
 
   return (
@@ -24,6 +29,10 @@ const PostItem = ({ userId, post }: IPostItemProps) => {
             </p>
             <span className="hidden cursor-pointer text-neutral-500 hover:underline md:block">
               @{post.user.username}
+            </span>
+
+            <span className="hidden cursor-pointer text-neutral-500 hover:underline md:block">
+              {moment(new Date(post.updatedAt)).fromNow()}
             </span>
           </div>
           {/* Post content */}
