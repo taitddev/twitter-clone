@@ -1,7 +1,10 @@
+import useCurrentUser from "@/hooks/useCurrentUser";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IconType } from "react-icons";
 import { BiBookmark, BiChat, BiGroup, BiHome, BiTime } from "react-icons/bi";
+import Avatar from "./Avatar";
+import Logo from "./Logo";
 
 type TabItemType = {
   id: number;
@@ -32,6 +35,7 @@ const tabItems: TabItemType[] = [
 ];
 const Header = () => {
   const router = useRouter();
+  const { currentUser } = useCurrentUser();
   const navRef = useRef<HTMLDivElement>(null);
   const [seletedTab, setSeletedTab] = useState(tabItems[0]);
 
@@ -42,7 +46,7 @@ const Header = () => {
           "shadow-md",
           "backdrop-blur-xl",
           "bg-white/70",
-          "dark:bg-darkSecondary/70",
+          "dark:bg-darkSecondary/60",
         ]
       );
     } else {
@@ -51,7 +55,7 @@ const Header = () => {
           "shadow-md",
           "backdrop-blur-xl",
           "bg-white/70",
-          "dark:bg-darkSecondary/70",
+          "dark:bg-darkSecondary/60",
         ]
       );
     }
@@ -70,22 +74,26 @@ const Header = () => {
 
   return (
     <div
-      className="sticky top-8 z-20 mx-auto mb-4 flex flex-1 items-center justify-around gap-8 rounded-br-3xl rounded-bl-3xl bg-lightPrimary p-5"
+      className="fixed top-0 z-20 mx-auto mb-4 flex w-full flex-1 items-center justify-between bg-lightPrimary p-5 dark:bg-darkSecondary"
       ref={navRef}
     >
-      {tabItems.map((item) => (
-        <button
-          key={item.id}
-          onClick={() => handleClick(item)}
-          className={`${
-            item.id === seletedTab.id
-              ? "bg-violet-700 text-lightPrimary"
-              : "text-neutral-600"
-          } rounded-md p-3`}
-        >
-          <item.icon size={24}></item.icon>
-        </button>
-      ))}
+      <Logo />
+      <div className="flex gap-8">
+        {tabItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => handleClick(item)}
+            className={`${
+              item.id === seletedTab.id
+                ? "bg-bluePrimary text-lightPrimary"
+                : "text-neutral-600"
+            } rounded-md p-3`}
+          >
+            <item.icon size={24}></item.icon>
+          </button>
+        ))}
+      </div>
+      <Avatar userId={currentUser?.id} />
     </div>
   );
 };

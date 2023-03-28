@@ -7,7 +7,6 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 import AddPost from "../button/AddPost";
 import SidebarItem from "./SidebarItem";
-import SidebarLogo from "./SidebarLogo";
 
 export interface ISidebarItem {
   id: number;
@@ -58,17 +57,12 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="relative h-full pr-4 md:pr-6">
-      <div className="sticky top-8 z-20 flex flex-col items-end">
-        <div className="rounded-lg bg-lightPrimary py-2 dark:bg-darkSecondary lg:w-[230px]">
-          <SidebarLogo />
+    <div className="relative h-full px-6">
+      <div className="sticky top-28 z-20 flex flex-col items-end">
+        <div className="rounded-lg bg-lightPrimary p-4 py-2 dark:bg-darkSecondary lg:w-[230px]">
           {items.map((item) => (
             <SidebarItem key={item.id} item={item}></SidebarItem>
           ))}
-
-          <div className="p-4">
-            <AddPost />
-          </div>
 
           <div className="p-4">
             <DarkModeSwitch
@@ -76,6 +70,10 @@ const Sidebar = () => {
               onChange={changeDarkMode}
               size={26}
             />
+          </div>
+
+          <div className="p-4">
+            <AddPost />
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ const Form = ({ placeholder }: IFormProps) => {
   }, [content, mutatePosts]);
 
   return (
-    <div className="mt-16 mb-8 rounded-xl bg-lightPrimary p-5 dark:bg-darkSecondary">
+    <div className="mb-8 rounded-xl bg-lightPrimary p-5 dark:bg-darkSecondary">
       <div className="flex gap-4">
         <div>
           <Avatar userId={currentUser?.id} />
