@@ -6,6 +6,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 
 import Avatar from "./Avatar";
 import Button from "./Button";
+import usePosts from "@/hooks/usePosts";
 
 interface IFormProps {
   placeholder: string;
@@ -17,6 +18,8 @@ const Form = ({ placeholder }: IFormProps) => {
   const { currentUser } = useCurrentUser();
 
   const [content, setContent] = useState("");
+  console.log("file: Form.tsx:21 ~ Form ~ content:", content);
+  const { mutate: mutatePosts } = usePosts();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleContentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -29,12 +32,13 @@ const Form = ({ placeholder }: IFormProps) => {
       await axios.post("/api/posts", { body: content });
       toast.success("Post created");
       setContent("");
+      mutatePosts();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  }, [content]);
+  }, [content, mutatePosts]);
 
   return (
     <div className="border-b-[1px] border-lightSecondary px-5 py-2">
@@ -47,6 +51,7 @@ const Form = ({ placeholder }: IFormProps) => {
             placeholder={placeholder}
             className="peer mt-3 w-full resize-none text-lg placeholder-neutral-500 outline-none disabled:opacity-80"
             onChange={handleContentChange}
+            value={content}
           />
           <hr className="h-[1px] w-full border-lightSecondary opacity-0 transition peer-focus:opacity-100" />
           <div className="mt-4 flex flex-row justify-end">

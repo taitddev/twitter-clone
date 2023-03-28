@@ -6,8 +6,8 @@ const FollowBar = () => {
   const { users = [] } = useUsers();
 
   return (
-    <div className="hidden px-6 py-4 lg:block">
-      <div className="rounded-xl bg-lightPrimary p-4 dark:bg-darkSecondary">
+    <div className="relative hidden px-6 lg:block">
+      <div className="fixed top-8 w-[350px] rounded-xl bg-lightPrimary p-4 dark:bg-darkSecondary">
         <h2 className="text-xl font-semibold">Who to follow</h2>
         <div className="mt-4 flex flex-col gap-6">
           {users.map((user: any) => (
