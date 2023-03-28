@@ -1,15 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IconType } from "react-icons";
-import {
-  BiArrowBack,
-  BiBookBookmark,
-  BiBookmark,
-  BiChat,
-  BiGroup,
-  BiHome,
-  BiTime,
-} from "react-icons/bi";
+import { BiBookmark, BiChat, BiGroup, BiHome, BiTime } from "react-icons/bi";
 
 type TabItemType = {
   id: number;
@@ -78,7 +70,7 @@ const Header = () => {
 
   return (
     <div
-      className="sticky top-8 z-20 mx-auto mb-4  flex max-w-fit flex-1 items-center justify-between gap-8 rounded-br-3xl rounded-bl-3xl bg-lightPrimary p-5"
+      className="sticky top-8 z-20 mx-auto mb-4 flex flex-1 items-center justify-around gap-8 rounded-br-3xl rounded-bl-3xl bg-lightPrimary p-5"
       ref={navRef}
     >
       {tabItems.map((item) => (
@@ -89,7 +81,7 @@ const Header = () => {
             item.id === seletedTab.id
               ? "bg-violet-700 text-lightPrimary"
               : "text-neutral-600"
-          } rounded-md p-2`}
+          } rounded-md p-3`}
         >
           <item.icon size={24}></item.icon>
         </button>

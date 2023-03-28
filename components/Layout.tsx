@@ -22,6 +22,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
       ) : (
         <>
           <MetaData title="Home" />
+          <div className="fixed z-[2000] h-8 w-full bg-lightSecondary"></div>
           <main className="container mx-auto h-full max-w-7xl">
             <div className="grid h-full grid-cols-4">
               <Sidebar />
