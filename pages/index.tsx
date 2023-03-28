@@ -5,7 +5,7 @@ import PostFeed from "@/components/posts/PostFeed";
 export default function Home() {
   return (
     <>
-      <Header label="home" />
+      <Header />
       <Form placeholder="What's happening?" />
       <PostFeed />
     </>

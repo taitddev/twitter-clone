@@ -7,6 +7,7 @@ import { BiComment, BiLike } from "react-icons/bi";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Avatar from "../Avatar";
+import { useCallback, useEffect, useRef } from "react";
 
 interface IPostItemProps {
   userId?: string;
@@ -14,16 +15,17 @@ interface IPostItemProps {
 }
 
 const PostItem = ({ userId, post }: IPostItemProps) => {
-  console.log("file: PostItem.tsx:13 ~ PostItem ~ post:", post);
   const router = useRouter();
 
   return (
-    <div className="cursor-pointer border-b-[1px] border-gray-200 p-5 transition hover:bg-gray-200">
-      <div className="flex flex-row items-start gap-3">
-        <Avatar userId={post.user.id} />
+    <div className="mb-4 cursor-pointer rounded-2xl bg-lightPrimary p-5 hover:bg-gray-200 hover:transition dark:bg-darkSecondary">
+      <div className="flex items-start gap-4">
+        <div>
+          <Avatar userId={post.user.id} />
+        </div>
         <div>
           {/* User information */}
-          <div className="flex flex-row items-center gap-2">
+          <div className="flex items-center gap-2">
             <p className="cursor-pointer font-semibold hover:underline">
               {post.user.name}
             </p>

@@ -1,32 +1,99 @@
 import { useRouter } from "next/router";
-import { useCallback } from "react";
-import { BiArrowBack } from "react-icons/bi";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { IconType } from "react-icons";
+import {
+  BiArrowBack,
+  BiBookBookmark,
+  BiBookmark,
+  BiChat,
+  BiGroup,
+  BiHome,
+  BiTime,
+} from "react-icons/bi";
 
-interface IHeaderProps {
-  label: string;
-  showBackArrow?: boolean;
-}
+type TabItemType = {
+  id: number;
+  icon: IconType;
+};
 
-const Header: React.FC<IHeaderProps> = ({ label, showBackArrow }) => {
+const tabItems: TabItemType[] = [
+  {
+    id: 1,
+    icon: BiHome,
+  },
+  {
+    id: 2,
+    icon: BiGroup,
+  },
+  {
+    id: 3,
+    icon: BiTime,
+  },
+  {
+    id: 4,
+    icon: BiChat,
+  },
+  {
+    id: 5,
+    icon: BiBookmark,
+  },
+];
+const Header = () => {
   const router = useRouter();
+  const navRef = useRef<HTMLDivElement>(null);
+  const [seletedTab, setSeletedTab] = useState(tabItems[0]);
 
-  const handleBack = useCallback(() => {
-    router.back();
-  }, [router]);
+  const addShadowToNavbar = useCallback(() => {
+    if (window.scrollY > 10) {
+      navRef.current!.classList.add(
+        ...[
+          "shadow-md",
+          "backdrop-blur-xl",
+          "bg-white/70",
+          "dark:bg-darkSecondary/70",
+        ]
+      );
+    } else {
+      navRef.current!.classList.remove(
+        ...[
+          "shadow-md",
+          "backdrop-blur-xl",
+          "bg-white/70",
+          "dark:bg-darkSecondary/70",
+        ]
+      );
+    }
+  }, []);
+
+  const handleClick = (item: TabItemType) => {
+    setSeletedTab(item);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", addShadowToNavbar);
+    return () => {
+      window.removeEventListener("scroll", addShadowToNavbar);
+    };
+  }, [addShadowToNavbar]);
 
   return (
-    <div className="sticky top-0 z-[10] w-full border-b-[1px] border-gray-200 bg-transparent p-5 shadow-sm backdrop-blur-xl dark:border-gray-800">
-      <div className="flex flex-row items-center gap-2">
-        {showBackArrow && (
-          <BiArrowBack
-            onClick={handleBack}
-            color="white"
-            size={20}
-            className="cursor-pointer transition hover:opacity-70"
-          />
-        )}
-        <h1 className="text-xl font-semibold capitalize">{label}</h1>
-      </div>
+    <div
+      className="sticky top-8 z-20 mx-auto mb-4  flex max-w-fit flex-1 items-center justify-between gap-8 rounded-br-3xl rounded-bl-3xl bg-lightPrimary p-5"
+      ref={navRef}
+    >
+      {tabItems.map((item) => (
+        <button
+          key={item.id}
+          onClick={() => handleClick(item)}
+          className={`${
+            item.id === seletedTab.id
+              ? "bg-violet-700 text-lightPrimary"
+              : "text-neutral-600"
+          } rounded-md p-2`}
+        >
+          <item.icon size={24}></item.icon>
+        </button>
+      ))}
     </div>
   );
 };

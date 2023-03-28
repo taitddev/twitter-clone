@@ -59,8 +59,8 @@ const Sidebar = () => {
 
   return (
     <div className="relative h-full pr-4 md:pr-6">
-      <div className="sticky top-0 flex flex-col items-end">
-        <div className="py-2 lg:w-[230px]">
+      <div className="sticky top-8 z-20 flex flex-col items-end">
+        <div className="rounded-lg bg-lightPrimary py-2 dark:bg-darkSecondary lg:w-[230px]">
           <SidebarLogo />
           {items.map((item) => (
             <SidebarItem key={item.id} item={item}></SidebarItem>
