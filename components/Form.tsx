@@ -26,7 +26,7 @@ const Form = ({ placeholder }: IFormProps) => {
   const handlePost = useCallback(async () => {
     try {
       setIsLoading(true);
-      await axios.post("/api/posts", { content });
+      await axios.post("/api/posts", { body: content });
       toast.success("Post created");
       setContent("");
     } catch (error) {
