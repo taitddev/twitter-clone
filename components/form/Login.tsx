@@ -52,10 +52,10 @@ const Login = () => {
     >
       {({ values, errors, handleBlur, handleChange, handleSubmit }) => (
         <form onSubmit={handleSubmit} className="min-w-[500px]">
-          <div className="m-8 flex items-center gap-2 overflow-hidden rounded-md border-[1px] border-sky-600 p-4">
+          <div className="m-8 flex items-center gap-2 overflow-hidden rounded-md border-[1px] bg-lightPrimary p-4 dark:bg-darkPrimary">
             <BsInfoCircleFill size={24} className="text-blue-500" />
 
-            <div className="flex h-full bg-black">
+            <div className="flex h-full">
               <span>Bạn phải đăng nhập để tiếp tục</span>
             </div>
           </div>

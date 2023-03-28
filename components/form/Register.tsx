@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import Input from "../input/InputBase";
@@ -11,6 +11,8 @@ import {
   AiOutlineUser,
   AiOutlineIdcard,
 } from "react-icons/ai";
+import { PageType } from "./Container";
+import SubmitButton from "../button/SubmitButton";
 
 interface FormValues {
   name: string;
@@ -33,7 +35,11 @@ const initialValuesLogin: FormValues = {
   username: "",
 };
 
-const Register = () => {
+interface IRegisterFormProps {
+  setPageType: Dispatch<SetStateAction<PageType>>;
+}
+
+const Register = ({ setPageType }: IRegisterFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = async ({
@@ -51,6 +57,7 @@ const Register = () => {
         name,
       });
       setIsLoading(false);
+      setPageType("login");
       toast.success("Account created.");
     } catch (error) {
       toast.error("Something went wrong");
@@ -103,12 +110,7 @@ const Register = () => {
           />
 
           <div className="mt-10">
-            <button
-              type="submit"
-              className="w-full transform rounded-lg bg-blue-500 px-6 py-4 text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-            >
-              Sign up
-            </button>
+            <SubmitButton label="Sign up" />
           </div>
         </form>
       )}

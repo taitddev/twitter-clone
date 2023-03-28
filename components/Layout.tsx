@@ -1,4 +1,4 @@
-import useCurrentUser from "@/hooks/useCurrentUser";
+import { useSession } from "next-auth/react";
 import React, { ReactNode } from "react";
 import FollowBar from "./FollowBar";
 import Sidebar from "./layout/Sidebar";
@@ -10,13 +10,11 @@ interface ILayoutProps {
 }
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
-  const { currentUser, isLoading } = useCurrentUser();
-
-  if (isLoading) return null;
+  const { data: session } = useSession();
 
   return (
     <div className="h-screen bg-lightSecondary text-darkPrimary dark:bg-darkPrimary dark:text-lightPrimary">
-      {!currentUser ? (
+      {!session ? (
         <Container />
       ) : (
         <>

@@ -17,7 +17,7 @@ const Container = () => {
     <div className="flex h-full items-center justify-center">
       <div className="flex flex-col gap-6">
         {/* Form */}
-        {isLogin ? <Login /> : <Register />}
+        {isLogin ? <Login /> : <Register setPageType={setPageType} />}
         {/* Link to toggle login and register form */}
         <div className="text-center">
           <span
