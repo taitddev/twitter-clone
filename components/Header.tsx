@@ -34,7 +34,6 @@ const tabItems: TabItemType[] = [
   },
 ];
 const Header = () => {
-  const router = useRouter();
   const { currentUser } = useCurrentUser();
   const navRef = useRef<HTMLDivElement>(null);
   const [seletedTab, setSeletedTab] = useState(tabItems[0]);

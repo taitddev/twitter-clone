@@ -21,7 +21,6 @@ const Profile = () => {
 
   return (
     <>
-      <Header label={user?.name} />
       <Background userId={userId as string} />
       <Bio userId={userId as string} />
       <PostFeed userId={userId as string} />
