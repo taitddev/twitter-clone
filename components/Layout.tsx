@@ -24,8 +24,8 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <>
           <MetaData title="Home" />
           <Header />
-          <main className="container mx-auto h-full max-w-7xl">
-            <div className="grid h-full grid-cols-4">
+          <main className="container mx-auto h-full max-w-[1536px]">
+            <div className="grid h-full grid-cols-4 gap-10">
               <Sidebar />
               <div className="relative col-span-3 mt-28 lg:col-span-2">
                 {children}

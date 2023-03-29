@@ -1,36 +1,50 @@
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import { ISidebarItem } from "./Sidebar";
 
 interface ISidebarItemProps {
   item: ISidebarItem;
+  selectedItem: ISidebarItem;
+  setSelectedItem: Dispatch<SetStateAction<ISidebarItem>>;
 }
 
-const SidebarItem: React.FC<ISidebarItemProps> = ({ item }) => {
+const SidebarItem = ({
+  item,
+  selectedItem,
+  setSelectedItem,
+}: ISidebarItemProps) => {
   const router = useRouter();
   const { label, icon: Icon, alert, onClick, href } = item;
 
   const handleClick = useCallback(() => {
+    setSelectedItem(item);
     if (onClick) {
       return onClick();
     }
 
     if (href) router.push(href);
-  }, [onClick, href, router]);
+  }, [onClick, href, router, item, setSelectedItem]);
 
   return (
     <div
       onClick={handleClick}
-      className="flex cursor-pointer items-center gap-2 rounded-full p-4 hover:bg-slate-300 hover:bg-opacity-10"
+      className={`flex cursor-pointer items-center justify-between gap-2 p-4 hover:bg-slate-300 hover:bg-opacity-10 ${
+        item.id === selectedItem.id ? "shadow-blueInset" : ""
+      }`}
     >
-      <div className="relative">
-        <Icon size={24} />
-        {alert ? (
-          <div className="absolute right-0 top-0 h-3 w-3 -translate-y-2/4 rounded-full bg-sky-500"></div>
-        ) : null}
+      <div className="flex items-center gap-2">
+        <div className="relative">
+          <Icon size={24} />
+        </div>
+
+        <p className="hidden lg:block">{label}</p>
       </div>
 
-      <p className="hidden text-xl lg:block">{label}</p>
+      {alert ? (
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-bluePrimary text-sm text-white">
+          2
+        </span>
+      ) : null}
     </div>
   );
 };

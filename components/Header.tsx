@@ -2,7 +2,16 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IconType } from "react-icons";
-import { BiBookmark, BiChat, BiGroup, BiHome, BiTime } from "react-icons/bi";
+import {
+  BiBell,
+  BiBookmark,
+  BiChat,
+  BiGroup,
+  BiHome,
+  BiTime,
+} from "react-icons/bi";
+import { BsBell, BsChat, BsChatDots } from "react-icons/bs";
+import { HiOutlineBell } from "react-icons/hi";
 import Avatar from "./Avatar";
 import Logo from "./Logo";
 
@@ -73,11 +82,12 @@ const Header = () => {
 
   return (
     <div
-      className="fixed top-0 z-20 mx-auto mb-4 flex w-full flex-1 items-center justify-between bg-lightPrimary p-5 dark:bg-darkSecondary"
+      className="fixed top-0 z-20 mx-auto mb-4 grid w-full grid-cols-3 items-center bg-lightPrimary p-5 dark:bg-darkSecondary"
       ref={navRef}
     >
       <Logo />
-      <div className="flex gap-8">
+      {/* Navbar */}
+      <div className="flex items-center justify-center gap-8">
         {tabItems.map((item) => (
           <button
             key={item.id}
@@ -92,7 +102,13 @@ const Header = () => {
           </button>
         ))}
       </div>
-      <Avatar userId={currentUser?.id} />
+
+      <div className="flex items-center justify-end gap-8">
+        <div className="flex items-center gap-2">
+          <Avatar userId={currentUser?.id} size="small" />
+          <span>{currentUser?.name}</span>
+        </div>
+      </div>
     </div>
   );
 };

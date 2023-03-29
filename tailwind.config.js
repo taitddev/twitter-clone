@@ -18,6 +18,9 @@ module.exports = {
         darkSecondary: "#0F0F0F",
         bluePrimary: "#2A55C2",
       },
+      boxShadow: {
+        blueInset: "inset 4px 0 0 #2A55C2",
+      },
     },
   },
   plugins: [],
