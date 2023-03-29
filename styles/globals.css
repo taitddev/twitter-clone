@@ -17,4 +17,15 @@ body {
   textarea {
     @apply bg-inherit outline-none;
   }
+
+  pre {
+    margin: 0;
+    font-family: inherit;
+    line-height: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    white-space: pre-wrap;
+  }
 }
